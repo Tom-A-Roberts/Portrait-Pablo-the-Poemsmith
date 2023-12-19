@@ -1,7 +1,7 @@
 # Portrait-Pablo-the-Poemsmith
 A demo of the GPT-4-Vision model, linked with OpenAI's Text-To-Speech AI
 
-![Pycharm Image2](./assets/screenShot.png)
+![Pycharm Image2](./assets/screenshot.png)
 
 ### Public Demo
 
