@@ -4,7 +4,7 @@ import streamlit as st
 import chat_management as chats
 
 st.set_page_config(
-    page_title="GPT-4-Vision",
+    page_title="Portrait Pablo",
     page_icon="🎙️",
     layout="wide",
     initial_sidebar_state="expanded",
