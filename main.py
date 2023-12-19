@@ -20,6 +20,8 @@ if "result" not in st.session_state:
     st.session_state.result = None
 if "audio_result" not in st.session_state:
     st.session_state.audio_result = None
+if "knows_password" not in st.session_state:
+    st.session_state.knows_password = False
 def get_api_key():
     if "api_key" not in st.secrets:
         return None
@@ -32,6 +34,16 @@ if api_key == None or api_key == "":
 
 st.title("Portrait Pablo the Poemsmith 🎙️")
 st.caption("A demo of the GPT-4-Vision model, linked with OpenAI's Text-To-Speech AI.")
+
+user_data = st.experimental_user
+if "email" in user_data:
+    user_email = user_data.email.strip()
+    known_users = st.secrets["known_users"].split(",")
+    trimmed_known_users = [user.strip() for user in known_users]
+    if user_email in trimmed_known_users:
+        st.session_state.knows_password = True
+    st.write(f"Logged in as {user_data.email}")
+
 st.markdown("""
 ##### How to use
 1. You may have to allow access to your camera.
@@ -47,6 +59,18 @@ No images are stored, after the model has processed the image it is immediately 
 
 """)
 st.divider()
+
+
+
+if st.session_state.knows_password == False:
+    st.error('This demo requires a password if you are not one of the known email addresses. Please enter the pass below', icon="🚨")
+    password = st.text_input("Password", type="password")
+    pass_from_secrets = st.secrets["password"]
+    if password == pass_from_secrets:
+        st.session_state.knows_password = True
+        st.rerun()
+    else:
+        st.stop()
 
 system_prompt = """You are a Caricaturist but you make poems instead of drawings.
 Your poems are entertaining and funny and friendly.
