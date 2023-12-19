@@ -37,12 +37,13 @@ st.caption("A demo of the GPT-4-Vision model, linked with OpenAI's Text-To-Speec
 
 user_data = st.experimental_user
 if "email" in user_data:
-    user_email = user_data.email.strip()
-    known_users = st.secrets["known_users"].split(",")
-    trimmed_known_users = [user.strip() for user in known_users]
-    if user_email in trimmed_known_users:
-        st.session_state.knows_password = True
-    st.write(f"Logged in as {user_data.email}")
+    if user_data.email != None:
+        user_email = user_data.email.strip()
+        known_users = st.secrets["known_users"].split(",")
+        trimmed_known_users = [user.strip() for user in known_users]
+        if user_email in trimmed_known_users:
+            st.session_state.knows_password = True
+        st.write(f"Logged in as {user_data.email}")
 
 st.markdown("""
 ##### How to use
