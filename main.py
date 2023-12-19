@@ -62,7 +62,6 @@ No images are stored, after the model has processed the image it is immediately 
 st.divider()
 
 
-
 if st.session_state.knows_password == False:
     st.error('This demo requires a password if you are not one of the known email addresses. Please enter the pass below', icon="🚨")
     password = st.text_input("Password", type="password")
@@ -124,6 +123,7 @@ def autoplay_audio(file_path: str):
         )
 
 if st.session_state.audio_result != None:
+    st.markdown("**Press play below to hear the poem out loud**")
     autoplay_audio(st.session_state.audio_result)
 
 if st.session_state.unprocessed_user_message and st.session_state.result == None:
